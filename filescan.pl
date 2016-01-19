@@ -60,3 +60,55 @@ sub print_report_line {
     my %file_properties = %{$href};
     say join("\t", @file_properties{@HEADERS});
 }
+
+__END__
+
+=head1 NAME
+
+filescan.pl - scan files in specified directories and return basic metadata.
+
+=head1 SYNOPSIS
+
+C<< perl filescan.pl x:\ > files_on_x_drive.txt >>
+
+=head1 DESCRIPTION
+
+This script takes one or more directories as input on the command line.  Invalid
+directories are ignored; if no valid directories are provided, the script is
+terminated.
+
+The script returns properties for each file found in the specified directories
+(or within any sub-directory, regardless of depth).  The format of the returned
+values is tab-delimited.
+
+The properties returned are (in order):
+
+=over
+
+=item *
+
+MD5 checksum
+
+=item *
+
+last modified date, in ISO 8601 format
+
+=item *
+
+size, in bytes
+
+=item *
+
+file name
+
+=item *
+
+file path
+
+=back
+
+=head1 AUTHOR
+
+L<Carlos Arenas|mailto:carlos.arenas@gmail.com>
+
+=cut
