@@ -8,7 +8,6 @@ use File::stat;
 use Time::Piece;
 
 my $SKIP_HEADERS = 0;
-my @dirs         = @ARGV;
 my @HEADERS      = qw/
     MD5SUM
     MTIME
@@ -17,6 +16,8 @@ my @HEADERS      = qw/
     PATH
 /;
 
+my @dirs = grep { -d } @ARGV;
+die "No valid directories given!" unless @dirs;
 find(\&wanted, @dirs);
 
 sub wanted {
